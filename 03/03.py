@@ -14,15 +14,13 @@ def get_symbols() -> set:
 
 def seek_adjacent(line_num:int, coords:tuple, symbols:list) -> bool:
     adjacent_chars = []
-    print(LINES[line_num][coords[0]:coords[1]])
     if line_num != 0: # previous line (can overflow)
         adjacent_chars.append(LINES[line_num-1][coords[0]-1:coords[1]+1])
-    adjacent_chars.append(LINES[line_num][coords[0]-1:coords[0]+1]) # current line
+    adjacent_chars.append(LINES[line_num][coords[0]-1:coords[1]+1]) # current line
     if line_num != 139: # last line (can overflow)
         adjacent_chars.append(LINES[line_num+1][coords[0]-1:coords[1]+1])
 
     adjacent_chars = [l for ls in adjacent_chars for l in ls]
-    print(adjacent_chars)
     for c in set(adjacent_chars):
         if c in symbols: 
             return True
@@ -37,7 +35,6 @@ def part_one():
         #numbers = {}
         matches = re.finditer(r'\b\d+\b', line)
         for match in matches:
-            print(match)
             #numbers[match.group()] = match.span()
             if seek_adjacent(idx,match.span(),symbols):
                 print(match.group())
@@ -45,8 +42,4 @@ def part_one():
     return sum
 
 symbols = get_symbols()
-print(seek_adjacent(138,(107, 110),symbols))
-#print(part_one())
-
-
-#print(seek_adjacent(0,test["227"],symbols))
+print(part_one())
