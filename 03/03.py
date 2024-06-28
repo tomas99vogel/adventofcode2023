@@ -32,14 +32,10 @@ def part_one():
 
     for idx,line in enumerate(LINES):
         
-        #numbers = {}
         matches = re.finditer(r'\b\d+\b', line)
         for match in matches:
-            #numbers[match.group()] = match.span()
             if seek_adjacent(idx,match.span(),symbols):
-                print(match.group())
                 sum += int(match.group())
     return sum
 
-symbols = get_symbols()
 print(part_one())
