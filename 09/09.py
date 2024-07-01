@@ -2,7 +2,6 @@ with open("input.txt", "r") as f:
     LINES = [line.strip() for line in f.readlines()] 
 
 
-
 def extrapolate(array:list[list], reverse) -> int:
     if reverse:
         array[-1].insert(0,0)
@@ -32,11 +31,11 @@ def reduce_line(line:list) -> int:
 
     return extrapolate(prediction_array,reverse)
 
-  
-result = 0
-reverse = False # Part 1 = False, Part 2 = True 
+if __name__ == '__main__':
+    result = 0
+    reverse = False # Part 1 = False, Part 2 = True 
 
-for line in LINES:
-    line = list(map(int,line.split(" ")))
-    result += reduce_line(line)
+    for line in LINES:
+        line = list(map(int,line.split(" ")))
+        result += reduce_line(line)
 
