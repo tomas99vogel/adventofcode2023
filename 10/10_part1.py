@@ -41,17 +41,15 @@ def get_next_position(position:tuple[int,int],direction:tuple[int,int]):
 
 
 def move(position, direction):
-    steps = 0
+    steps = 1
     position, direction = get_next_position(position,direction)
-
     while position and position != starting_point:
+        steps += 1
         try:
             position, direction = get_next_position(position, direction)
-            steps += 1
         except:
             return steps
 
 
-
-print(move(starting_point,right))
 print(starting_point)
+print(move(starting_point,right)//2)
